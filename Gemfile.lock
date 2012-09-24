@@ -1,0 +1,14 @@
+PATH
+  remote: /Users/dylan/dev/rm-bubblewrap
+  specs:
+    bubble-wrap (1.1.3)
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bubble-wrap!
