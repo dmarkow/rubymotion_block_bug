@@ -35,16 +35,21 @@ class AppDelegate
     #
     Foo.new.bar
 
-    # Calling HTTP#get directly instead of using a separate class works fine.
+    # Assigning to a local variable doesn't work either:
+    #
+    # f = Foo.new
+    # f.bar
+
+    # Using an instance variable works, however:
+    #
+    # @foo = Foo.new
+    # @foo.bar
+
+    # Calling HTTP#get directly instead of using a separate class works fine:
     #
     # HTTP.get("http://www.google.com") do |response|
     #   NSLog "Got a response..."
     # end
-
-    # Using this works, however:
-    #
-    # @foo = Foo.new
-    # @foo.bar
 
     true
   end
