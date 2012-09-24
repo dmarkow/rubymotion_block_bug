@@ -2,8 +2,8 @@ module HTTP
   class Query
     attr_accessor :url, :callback
 
-    def initialize(url_string, callback)
-      @callback = callback
+    def initialize(url_string, &block)
+      @callback = block
       request = NSMutableURLRequest.requestWithURL(NSURL.URLWithString(url_string), cachePolicy: NSURLRequestUseProtocolCachePolicy, timeoutInterval: 60.0)
       connection = NSURLConnection.connectionWithRequest(request, delegate: self)
     end
@@ -12,16 +12,12 @@ module HTTP
       @callback.call('foo')
     end
   end
-
-  def self.get(url, &block)
-    ::HTTP::Query.new(url, block)
-  end
 end
 
 class Foo
   def bar
     NSLog "Getting request"
-    HTTP.get("http://www.google.com") do |response|
+    HTTP::Query.new("http://www.google.com") do |response|
       NSLog "Got Response"
     end
   end
